@@ -3,3 +3,19 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+# config/routes.yaml
+easy_admin_bundle:
+    resource: '@EasyAdminBundle/Controller/'
+    prefix: /admin
+    type: annotation
+blog_rss:
+    path: /blog/rss.xml
+    controller: App\Controller\BlogController::rssFeed
+homepage:
+    path: /
+    controller: App\Controller\BlogController::index
+blog_search:
+    path: /blog/search
+    controller: App\Controller\BlogController::search
+    methods: GET
+

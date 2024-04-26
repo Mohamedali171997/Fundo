@@ -1,0 +1,14 @@
+easy_admin:
+    design:
+        menu:
+            - { entity: 'App\Entity\Posts', label: 'Posts' }
+            - { entity: 'App\Entity\Commentaire', label: 'Commentaire' } # Modifier ici pour l'entité Commentaire
+            # Ajoutez d'autres entités ici si nécessaire
+
+    entities:
+        Commentaire:
+            class: App\Entity\Commentaire
+            controller: App\Controller\CommentaireCrudController
+        Posts:
+            class: App\Entity\Posts
+            controller: App\Controller\PostsCrudController

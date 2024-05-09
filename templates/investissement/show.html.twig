@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Investissement Details{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Investissement Details</h1>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow bg-light rounded">
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <th>Id</th>
+                                    <td>{{ investissement.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Nom</th>
+                                    <td>{{ investissement.nom }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Montant Initial</th>
+                                    <td>{{ investissement.montantInitial }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Montant Retour</th>
+                                    <td>{{ investissement.montantRetour }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Description</th>
+                                    <td>{{ investissement.description }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Date</th>
+                                    <td>{{ investissement.date ? investissement.date|date('Y-m-d') : '' }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="text-center">
+                            <a href="{{ path('app_investissement_index') }}" class="btn btn-secondary mr-2">Back to List</a>
+                            <a href="{{ path('app_investissement_edit', {'id': investissement.id}) }}" class="btn btn-primary mr-2">Edit</a>
+                            <a href="{{ path('app_investissement_show', {'id': investissement.id}) }}" class="btn btn-info mr-2">Show</a>
+                            <a href="{{ path('app_investissement_generate_pdf', {'id': investissement.id}) }}" class="btn btn-primary btn-sm">Generate PDF</a>
+                            <a href="{{ path('app_investissement_generate_pdf', {'id': investissement.id}) }}" class="btn btn-primary btn-sm ml-2" download>Download PDF</a>
+                            {{ include('investissement/_delete_form.html.twig') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel Investisseur{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h1 class="text-center mb-4">Créer un nouvel Investisseur</h1>
+
+                        <form method="post" action="{{ path('app_investisseur_new') }}">
+                            {{ form_start(form) }}
+                            <div class="form-group">
+                                {{ form_label(form.nom) }}
+                                {{ form_widget(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+                                {{ form_errors(form.nom) }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_label(form.email) }}
+                                {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
+                                {{ form_errors(form.email) }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_label(form.compteBancaire) }}
+                                {{ form_widget(form.compteBancaire, {'attr': {'class': 'form-control', 'placeholder': 'Compte Bancaire'}}) }}
+                                {{ form_errors(form.compteBancaire) }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_label(form.address) }}
+                                {{ form_widget(form.address, {'attr': {'class': 'form-control', 'placeholder': 'Adresse'}}) }}
+                                {{ form_errors(form.address) }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_label(form.contact) }}
+                                {{ form_widget(form.contact, {'attr': {'class': 'form-control', 'placeholder': 'Contact'}}) }}
+                                {{ form_errors(form.contact) }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_label(form.SecteurInteret) }}
+                                {{ form_widget(form.SecteurInteret, {'attr': {'class': 'form-control'}, 'id': 'SecteurInteret'}) }}
+                                {{ form_errors(form.SecteurInteret) }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_label(form.MontantInvestissementMinimum) }}
+                                {{ form_widget(form.MontantInvestissementMinimum, {'attr': {'class': 'form-control', 'placeholder': 'Montant Investissement Minimum'}}) }}
+                                {{ form_errors(form.MontantInvestissementMinimum) }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_label(form.HistoriqueInvestissements) }}
+                                {{ form_widget(form.HistoriqueInvestissements, {'attr': {'class': 'form-control', 'placeholder': 'Historique des Investissements'}}) }}
+                                {{ form_errors(form.HistoriqueInvestissements) }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_label(form.MontantInvesti) }}
+                                {{ form_widget(form.MontantInvesti, {'attr': {'class': 'form-control', 'placeholder': 'Montant Investi'}}) }}
+                                {{ form_errors(form.MontantInvesti) }}
+                            </div>
+
+                             <div class="form-group">
+                                {{ form_label(form.PhoneNumber) }}
+                                {{ form_widget(form.PhoneNumber, {'attr': {'class': 'form-control', 'placeholder': 'PhoneNumber'}}) }}
+                                {{ form_errors(form.PhoneNumber) }}
+                            </div>
+
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                <a href="{{ path('app_investisseur_index') }}" class="btn btn-secondary ml-2">Annuler</a>
+                            </div>
+
+                            
+
+                            {{ form_end(form) }}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var secteurInteretSelect = document.getElementById('secteur_interet');
+    var montantInvestissementInput = document.getElementById('montant_investissement_minimum');
+
+    // Tableau associatif des montants minimums correspondant à chaque secteur d'intérêt
+    var montantsMinimum = {
+        'Technologie': 10000,
+        'Sciences': 15000,
+        'Art': 20000,
+        'Sport': 25000,
+        'Environnement': 30000,
+        'Éducation': 35000
+    };
+
+    // Fonction pour mettre à jour dynamiquement le montant minimum d'investissement
+    function updateMontantInvestissement() {
+        var selectedOption = secteurInteretSelect.options[secteurInteretSelect.selectedIndex].value;
+        var montantMinimum = montantsMinimum[selectedOption];
+        montantInvestissementInput.value = montantMinimum;
+    }
+
+    // Ajouter un écouteur d'événements pour le changement de sélection
+    secteurInteretSelect.addEventListener('change', updateMontantInvestissement);
+
+    // Appel initial pour mettre à jour le montant minimum d'investissement en fonction de la sélection initiale
+    updateMontantInvestissement();
+});
+</script>
+
+{% endblock %}

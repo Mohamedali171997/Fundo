@@ -1,0 +1,14 @@
+controllers:
+    resource: ../../src/Controller/
+    type: annotation
+
+kernel:
+    resource: ../../src/Kernel.php
+    type: annotation
+    
+# config/routes.yaml
+
+app_investissement_generate_pdf:
+  path: '/investissement/{id}/generate-pdf'
+  controller: 'App\Controller\InvestissementController::generatePDF'
+  methods: ['GET'] # Changez ici si vous utilisez une méthode POST au lieu de GET

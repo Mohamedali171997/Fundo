@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create New Investissement{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h1 class="text-center mb-4">Create New Investissement</h1>
+
+                        {{ form_start(form) }}
+                        <div class="mb-4">
+                            {{ form_row(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+                            {{ form_row(form.montantInitial, {'attr': {'class': 'form-control', 'placeholder': 'Montant Initial'}}) }}
+                            {{ form_row(form.montantRetour, {'attr': {'class': 'form-control', 'placeholder': 'Montant Retour'}}) }}
+                            {{ form_row(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Description'}}) }}
+                            {{ form_row(form.date, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                        {{ form_end(form) }}
+
+                        <hr>
+
+                        <div class="text-center">
+                            <a href="{{ path('app_investissement_index') }}" class="btn btn-secondary">Back to List</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

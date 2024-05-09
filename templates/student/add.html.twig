@@ -1,0 +1,32 @@
+
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/add.css') }}" rel="stylesheet">
+    <style>
+        .error-message {
+            color: red;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="form-container">
+        {{ form_start(f, {'attr': {'novalidate': 'novalidate'}}) }}
+
+        <div>
+            {{ form_label(f.nsc, 'Nsc', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(f.nsc, {'attr': {'class': 'form-control', 'placeholder': 'Nsc'}}) }}
+            <div class="error-message">{{ form_errors(f.nsc) }}</div>
+        </div>
+
+        <div>
+            {{ form_label(f.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(f.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
+            <div class="error-message">{{ form_errors(f.email) }}</div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+        {{ form_end(f) }}
+    </div>
+{% endblock %}
+

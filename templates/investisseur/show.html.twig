@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de l'investisseur{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h1 class="mb-0">Détails de l'investisseur</h1>
+            </div>
+            <div class="card-body">
+                <div class="card mb-3">
+                    <div class="card-header">Informations personnelles</div>
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            <li><strong>Nom:</strong> {{ investisseur.nom ?? 'Non spécifié' }}</li>
+                            <li><strong>Email:</strong> {{ investisseur.email ?? 'Non spécifié' }}</li>
+                            <li><strong>Contact:</strong> {{ investisseur.contact ?? 'Non spécifié' }}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">Informations financières</div>
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            <li><strong>Compte Bancaire:</strong> {{ investisseur.compteBancaire ?? 'Non spécifié' }}</li>
+                            <li><strong>Secteur d'Intérêt:</strong> {{ investisseur.secteurInteret ?? 'Non spécifié' }}</li>
+                            <li><strong>Montant Investissement Minimum:</strong> {{ investisseur.montantInvestissementMinimum ? investisseur.montantInvestissementMinimum ~ '€' : 'Non spécifié' }}</li>
+                            <li><strong>Montant Investi:</strong> {{ investisseur.montantInvesti ?? 'Non spécifié' }}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header">Historique des Investissements</div>
+                    <div class="card-body">
+                        {{ investisseur.historiqueInvestissements ?? 'Non spécifié' }}
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <a href="{{ path('app_investisseur_index') }}" class="btn btn-secondary">Retour à la liste</a>
+                    <a href="{{ path('app_investisseur_edit', {'id': investisseur.id}) }}" class="btn btn-primary">Modifier</a>
+                </div>
+            </div>
+        </div>
+        
+        {{ include('investisseur/_delete_form.html.twig') }}
+
+        <!-- Ajout de la section pour afficher le PDF et fournir un lien de téléchargement -->
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow bg-light rounded">
+                    <div class="card-body">
+                        <iframe src="{{ path('app_investissement_generate_pdf', {'id': investissement.id}) }}" width="100%" height="500px"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-3">
+            <a href="{{ path('app_investissement_generate_pdf', {'id': investissement.id}) }}" class="btn btn-primary" download>Télécharger le PDF</a>
+        </div>
+    </div>
+{% endblock %}

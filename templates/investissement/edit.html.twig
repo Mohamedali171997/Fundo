@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Investissement{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow rounded p-4">
+                    <div class="card-body">
+                        <h1 class="text-center mb-4">Edit Investissement</h1>
+
+                        {% if app.flashes('success') %}
+                            <div class="alert alert-success" role="alert">
+                                {{ app.flashes('success')|first }}
+                            </div>
+                        {% endif %}
+
+                        {% if form_errors(form) %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ form_errors(form)|join('<br>') }}
+                            </div>
+                        {% endif %}
+
+                        <form method="post">
+                            {{ form_start(form) }}
+                            <div class="mb-3">
+                                {{ form_label(form.nom, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Enter le nom'}}) }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form_label(form.montantInitial, 'Montant Initial', {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(form.montantInitial, {'attr': {'class': 'form-control', 'placeholder': 'Enter le montant initial'}}) }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form_label(form.montantRetour, 'Montant Retour', {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(form.montantRetour, {'attr': {'class': 'form-control', 'placeholder': 'Enter le montant retour'}}) }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form_label(form.description, 'Description', {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Enter la description'}}) }}
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                            {{ form_end(form) }}
+                        </form>
+
+                        <hr>
+
+                        <div class="text-center">
+                            <a href="{{ path('app_investissement_index') }}" class="btn btn-secondary">Back to List</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

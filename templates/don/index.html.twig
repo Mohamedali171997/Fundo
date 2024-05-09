@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Don Index{% endblock %}
+
+{% block body %}
+
+     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+       <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+       <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
+       <script type="text/javascript">
+       $(document).ready( function () {
+        $('#myTable').DataTable();
+    } );
+    </script>
+
+    <div class="container">
+        <h1 class="text-center mb-4">Don list</h1>
+
+        <div class="row mb-3">
+            <div class="col">
+                <a href="{{ path('don_ajouter') }}" class="btn btn-primary">Create New</a>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover" id="myTable">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Montant</th>
+                        <th scope="col">Projet</th>
+                        <th scope="col">Type de Don</th>
+                        <th scope="col">Donateur</th>
+                        <th scope="col">Bénéficiaire</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Action</th> <!-- Ajout du champ "Action" -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for don in dons %}
+                        <tr>
+                            <td>{{ don.id }}</td>
+                            <td>{{ don.montant }}</td>
+                            <td>{{ don.projet }}</td>
+                            <td>{{ don.typeDon }}</td>
+                            <td>{{ don.donateur }}</td>
+                            <td>{{ don.beneficiaire }}</td>
+                            <td>{{ don.date ? don.date|date('Y-m-d') : '' }}</td>
+                            <td>
+                                <a href="{{ path('don_voir', {'id': don.id}) }}" class="btn btn-info btn-sm">Show</a>
+                                <a href="{{ path('don_modifier', {'id': don.id}) }}" class="btn btn-primary btn-sm">Edit</a>
+                                <form method="post" action="{{ path('don_supprimer', {'id': don.id}) }}" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ don.id) }}">
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
+                                </form>
+                                    
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="8">No records found</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

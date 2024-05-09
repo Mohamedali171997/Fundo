@@ -1,0 +1,27 @@
+<!-- generate_pdf.html.twig -->
+<table>
+    <tr>
+        <th>Id</th>
+        <td>{{ investissement.id }}</td>
+    </tr>
+    <tr>
+        <th>Nom</th>
+        <td>{{ investissement.nom }}</td>
+    </tr>
+    <tr>
+        <th>Montant Initial</th>
+        <td>{{ investissement.montantInitial }}</td>
+    </tr>
+    <tr>
+        <th>Montant Retour</th>
+        <td>{{ investissement.montantRetour }}</td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td>{{ investissement.description }}</td>
+    </tr>
+    <tr>
+        <th>Date</th>
+        <td>{{ investissement.date ? investissement.date|date('Y-m-d') : '' }}</td>
+    </tr>
+</table>

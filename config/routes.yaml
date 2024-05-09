@@ -1,0 +1,8 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+# routes.yaml
+# config/packages/notifier.yaml
+
+# config/routes.yaml
+# Route vers la page d'accueil

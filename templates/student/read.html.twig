@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/read.css') }}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+    <h1>Liste des Students</h1> 
+   
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Numéro d'Inscription</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for student in students %}
+            <tr>
+                <td>{{ student.nsc }}</td>
+                <td>{{ student.email }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">Aucun student trouvé.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock  %}

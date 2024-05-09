@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier l'Investisseur{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header" style="background-color: #f8f9fa;">
+                <h1 class="mb-0" style="color: #212529;">Modifier l'Investisseur</h1>
+            </div>
+            <div class="card-body" style="background-color: #e9ecef;">
+                {{ include('investisseur/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+            </div>
+        </div>
+        
+        <div class="mt-4">
+            <a href="{{ path('app_investisseur_index') }}" class="btn btn-secondary">Retour à la liste</a>
+        </div>
+        
+        {{ include('investisseur/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

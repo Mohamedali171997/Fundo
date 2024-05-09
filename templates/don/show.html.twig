@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Don{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Don Details</h1>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow bg-light rounded">
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <th>Id</th>
+                                    <td>{{ don.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Montant</th>
+                                    <td>{{ don.montant }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Projet</th>
+                                    <td>{{ don.projet }}</td>
+                                </tr>
+                                <tr>
+                                    <th>TypeDon</th>
+                                    <td>{{ don.typeDon }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Donateur</th>
+                                    <td>{{ don.donateur }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Bénéficiaire</th>
+                                    <td>{{ don.beneficiaire }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Date</th>
+                                    <td>{{ don.date ? don.date|date('Y-m-d') : '' }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="text-center">
+                            <a href="{{ path('app_don') }}" class="btn btn-secondary">Back to List</a>
+                            <a href="{{ path('don_modifier', {'id': don.id}) }}" class="btn btn-primary">Edit</a>
+                            <a href="{{ path('don_voir', {'id': don.id}) }}" class="btn btn-info">Show</a>
+                            {{ include('don/_delete_form.html.twig') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

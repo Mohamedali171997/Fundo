@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h1>Recherche avance</h1>
+{{form(search_form)}}
+{% endblock %}
+{% block javascript %}
+{{parent() }}
+<script>
+$(document).ready(function(){
+    $('select').formSelect();
+});
+{% endblock %}

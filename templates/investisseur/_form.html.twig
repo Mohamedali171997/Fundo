@@ -1,0 +1,17 @@
+{# _form.html.twig #}
+{{ form_start(form) }}
+    {{ form_row(form.nom) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.compteBancaire) }}
+    {{ form_row(form.address) }}
+    {{ form_row(form.contact) }}
+    {{ form_row(form.SecteurInteret, {
+        'attr': {'class': 'form-control', 'id': 'investisseur_SecteurInteret'}
+    }) }}
+    {{ form_row(form.MontantInvestissementMinimum, {
+        'attr': {'class': 'form-control', 'id': 'investisseur_MontantInvestissementMinimum'}
+    }) }}
+    {{ form_row(form.HistoriqueInvestissements) }}
+    {{ form_row(form.MontantInvesti) }}
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+{{ form_end(form) }}

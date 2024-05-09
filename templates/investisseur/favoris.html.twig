@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des favoris de {{ investisseur.nom }}{% endblock %}
+
+{% block body %}
+    <h1>Liste des favoris de {{ investisseur.nom }}</h1>
+
+    <ul>
+        {% for favori in favoris %}
+            <li>{{ favori }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

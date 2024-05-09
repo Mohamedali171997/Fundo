@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'blog_index' %}
+
+{% block main %}
+    {% for post in paginator.results %}
+        {{ include('blog/_post.html.twig') }}
+    {% else %}
+        <div class="jumbotron">{{ 'post.no_posts_found'|trans }}</div>
+    {% endfor %}
+
+    {% if paginator.hasToPaginate %}
+
+        <div class="navigation text-center">
+            <ul class="pagination pagination-lg">
+                {% if paginator.hasPreviousPage %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ path('blog_index_paginated', {page: paginator.previousPage, tag: tagName}) }}" rel="previous">
+                            <i class="fa fw fa-long-arrow-left"></i> {{ 'paginator.previous'|trans }}
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <span class="page-link"><i class="fa fw fa-arrow-left"></i> {{ 'paginator.previous'|trans }}</span>
+                    </li>
+                {% endif %}
+
+                {% for i in 1..paginator.lastPage %}
+                    {% if i == paginator.currentPage %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ i }} <span class="sr-only">{{ 'paginator.current'|trans }}</span></span>
+                        </li>
+                    {% else %}
+                        <li class="page-item"><a class="page-link" href="{{ path('blog_index_paginated', {page: i, tag: tagName}) }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if paginator.hasNextPage %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ path('blog_index_paginated', {page: paginator.nextPage, tag: tagName}) }}">
+                            <span>{{ 'paginator.next'|trans }} <i class="fa fw fa-long-arrow-right"></i></span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <span class="page-link">{{ 'paginator.next'|trans }} <i class="fa fw fa-long-arrow-right"></i></span>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+
+
+        <!-- Other sidebar content -->
+        <!-- Create a container for the map -->
+        <div id="map-container" style="width:100%; height:500px;"></div>
+
+        <script>
+            // Function to initialize the map
+            function initializeMap() {
+                // Create a map object using Leaflet
+                var map = L.map('map-container').setView([36.9130621, 10.1506425], 13);
+
+                // Add OpenStreetMap tiles to the map
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+
+                // Create a marker and add it to the map
+                var marker = L.marker([36.9130621, 10.1506425], {
+                    draggable: true,
+                    title: "moveable marker"
+                }).addTo(map);
+
+                // Bind a popup to the marker
+                marker.bindPopup("esprit").openPopup();
+            }
+
+            // Initialize the map when the window loads
+            window.onload = initializeMap;
+        </script>
+        <!-- Other sidebar content -->
+
+
+
+
+    {{ show_source_code(_self) }}
+    {{ include('blog/_rss.html.twig') }}
+{% endblock %}

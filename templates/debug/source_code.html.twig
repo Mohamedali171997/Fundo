@@ -1,0 +1,79 @@
+<div class="section source-code">
+    <p>
+        {{ 'help.show_code'|trans|raw }}
+    </p>
+
+    <button type="button" class="btn btn-secondary py-3 btn-lg btn-block" data-toggle="modal" data-target="#sourceCodeModal">
+        <i class="fa fa-cogs" aria-hidden="true"></i> {{ 'action.show_code'|trans }}
+    </button>
+
+    <div class="modal fade" id="sourceCodeModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><i class="fa fa-code" aria-hidden="true"></i> {{ 'title.source_code'|trans }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ 'action.close'|trans }}">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="controller-tab" data-toggle="tab" href="#controller-code" role="tab" aria-controls="home" aria-selected="true" target="_blank">{{ 'title.controller_code'|trans }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="template-tab" data-toggle="tab" href="#template-code" role="tab" aria-controls="profile" aria-selected="false" target="_blank">{{ 'title.twig_template_code'|trans }}</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane show active" id="controller-code" role="tabpanel" aria-labelledby="controller-tab">
+                            {% if controller %}
+
+                                <!-- Your custom paragraph goes here -->
+                                <p>Fundo est une plateforme innovante qui vise à soutenir les petites entreprises en facilitant la connexion entre les investisseurs et les entrepreneurs</p>
+                            {% else %}
+                                <pre><code>{{ 'not_available'|trans }}</code></pre>
+                            {% endif %}
+                        </div>
+
+                        <div class="tab-pane" id="template-code" role="tabpanel" aria-labelledby="template-tab">
+                            <!-- Embed an iframe to display the OpenStreetMap -->
+                            <div class="tab-pane" id="template-code" role="tabpanel" aria-labelledby="template-tab">
+                                <!-- This div will host the Leaflet map -->
+                                <div id="map" style="width: 900px; height: 350px; border: 1px solid black;"></div>
+                                <br/>
+                                <small><a href="https://www.openstreetmap.org/#map=19/36.89976/10.18962">Afficher une carte plus grande</a></small>
+
+                                <!-- Leaflet CSS and JavaScript files -->
+                                <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+                                <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+                                <script>
+                                    // Set the target coordinates for the map
+                                    var target = L.latLng(36.89976, 10.18962);
+
+                                    // Create a map centered on the target coordinates
+                                    var map = L.map('map').setView(target, 19);
+
+                                    // Add an OpenStreetMap tile layer to the map
+                                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                                    }).addTo(map);
+
+                                    // Add a marker at the target location
+                                    L.marker(target).addTo(map)
+                                        .bindPopup('funndo').openPopup();
+                                </script>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
